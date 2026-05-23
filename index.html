@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Horarios CECyTE 08 San Pablo</title>
+
+  <!-- Logo de pestaña -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background: linear-gradient(135deg,#ff8800,#00a651);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:700px;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px);
+      border-radius:25px;
+      padding:30px;
+      text-align:center;
+      box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .logo{
+      width:250px;
+      max-width:100%;
+      background:white;
+      padding:15px;
+      border-radius:20px;
+      margin-bottom:20px;
+    }
+
+    h1{
+      color:white;
+      font-size:50px;
+      margin-bottom:10px;
+    }
+
+    p{
+      color:white;
+      font-size:24px;
+      margin-bottom:30px;
+    }
+
+    input{
+      width:80%;
+      padding:18px;
+      font-size:35px;
+      text-align:center;
+      border:none;
+      border-radius:15px;
+      margin-bottom:20px;
+      text-transform:uppercase;
+    }
+
+    button{
+      width:80%;
+      padding:18px;
+      font-size:28px;
+      border:none;
+      border-radius:15px;
+      margin-bottom:15px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn-horario{
+      background:#111;
+      color:white;
+    }
+
+    .btn-horario:hover{
+      background:#333;
+    }
+
+    .btn-mapa{
+      background:#555;
+      color:white;
+    }
+
+    .btn-mapa:hover{
+      background:#777;
+    }
+
+    #resultado{
+      margin-top:30px;
+    }
+
+    #resultado h2{
+      color:white;
+      font-size:45px;
+      margin-bottom:20px;
+    }
+
+    #resultado img{
+      width:100%;
+      border-radius:20px;
+      background:white;
+      padding:10px;
+    }
+
+    @media(max-width:600px){
+
+      h1{
+        font-size:35px;
+      }
+
+      p{
+        font-size:20px;
+      }
+
+      input{
+        font-size:28px;
+      }
+
+      button{
+        font-size:24px;
+      }
+
+      #resultado h2{
+        font-size:32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Logo -->
+  <img src="logo_cecyte.png" class="logo">
+
+  <h1>CECyTE Tlaxcala</h1>
+
+  <p>Sistema Digital de Consulta de Horarios</p>
+
+  <!-- Caja -->
+  <input type="text" id="grupo" placeholder="Ejemplo: 2A">
+
+  <!-- Botones -->
+  <br>
+
+  <button class="btn-horario" onclick="buscarHorario()">
+    Consultar horario
+  </button>
+
+  <br>
+
+  <button class="btn-mapa" onclick="verMapa()">
+    Ver mapa de la escuela
+  </button>
+
+  <!-- Resultado -->
+  <div id="resultado"></div>
+
+</div>
+
+<script>
+
+const horarios = {
+
+  // SEGUNDOS
+  "2A":"horario_2A.png",
+  "2B":"horario_2B.png",
+  "2C":"horario_2C.png",
+  "2D":"horario_2D.png",
+  "2E":"horario_2E.png",
+  "2F":"horario_2F.png",
+  "2G":"horario_2G.png",
+
+  // CUARTOS
+  "4A":"horario_4A.png",
+  "4B":"horario_4B.png",
+  "4C":"horario_4C.png",
+  "4D":"horario_4D.png",
+  "4E":"horario_4E.png",
+  "4F":"horario_4F.png",
+  "4G":"horario_4G.png",
+
+  // SEXTOS
+  "6A":"horario_6A.png",
+  "6B":"horario_6B.png",
+  "6C":"horario_6C.png",
+  "6D":"horario_6D.png",
+  "6E":"horario_6E.png",
+  "6F":"horario_6F.png",
+  "6G":"horario_6G.png"
+
+};
+
+function buscarHorario(){
+
+  let grupo = document.getElementById("grupo").value.toUpperCase();
+
+  let resultado = document.getElementById("resultado");
+
+  if(horarios[grupo]){
+
+    resultado.innerHTML = `
+      <h2>Horario ${grupo}</h2>
+      <img src="${horarios[grupo]}" alt="Horario">
+    `;
+
+  }else{
+
+    resultado.innerHTML = `
+      <h2>No se encontró el grupo</h2>
+    `;
+  }
+}
+
+function verMapa(){
+
+  let resultado = document.getElementById("resultado");
+
+  resultado.innerHTML = `
+    <h2>Mapa de la escuela</h2>
+    <img src="mapa_cecito.png" alt="Mapa">
+  `;
+}
+
+</script>
+
+</body>
+</html>
