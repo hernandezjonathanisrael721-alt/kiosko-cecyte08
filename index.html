@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Horarios CECyTE</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg,#00b09b,#ff7e00); /* verde + naranja */
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.logo{
+    width:120px;
+    margin-bottom:10px;
+}
+
+h1{
+    color:#0a7f5a;
+}
+
+input{
+    width:80%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:18px;
+    text-transform:uppercase;
+}
+
+button{
+    padding:12px 20px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    color:white;
+}
+
+.btn-horario{
+    background:#0a7f5a; /* verde */
+}
+
+.btn-mapa{
+    background:#ff7e00; /* naranja */
+}
+
+#resultado{
+    margin-top:20px;
+}
+
+#resultado img{
+    width:100%;
+    max-width:600px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="logo_cecyte.png" class="logo">
+
+<h1>CECyTE Tlaxcala</h1>
+
+<p>Sistema Digital de Consulta de Horarios</p>
+
+<input type="text" id="grupo" placeholder="Ejemplo: 2A">
+
+<br>
+
+<button class="btn-horario" onclick="buscarHorario()">
+Consultar horario
+</button>
+
+<button class="btn-mapa" onclick="verMapa()">
+Ver mapa de la escuela
+</button>
+
+<div id="resultado"></div>
+
+</div>
+
+<script>
+
+const horarios = {
+
+"2A":"horario_2A.png",
+"2B":"horario_2B.png",
+"2C":"horario_2C.png",
+"2D":"horario_2D.png",
+"2E":"horario_2E.png",
+"2F":"horario_2F.png",
+"2G":"horario_2G.png",
+
+"4A":"horario_4A.png",
+"4B":"horario_4B.png",
+"4C":"horario_4C.png",
+"4D":"horario_4D.png",
+"4E":"horario_4E.png",
+"4F":"horario_4F.png",
+"4G":"horario_4G.png",
+
+"6A":"horario_6A.png",
+"6B":"horario_6B.png",
+"6C":"horario_6C.png",
+"6D":"horario_6D.png",
+"6E":"horario_6E.png",
+"6F":"horario_6F.png",
+"6G":"horario_6G.png"
+
+};
+
+function buscarHorario(){
+
+    let grupo = document.getElementById("grupo").value.toUpperCase();
+
+    let resultado = document.getElementById("resultado");
+
+    if(horarios[grupo]){
+
+        resultado.innerHTML = `
+            <h2>Horario ${grupo}</h2>
+            <img src="${horarios[grupo]}" alt="Horario">
+        `;
+
+    }else{
+
+        resultado.innerHTML = `
+            <h2>No se encontró el grupo</h2>
+        `;
+    }
+}
+
+function verMapa(){
+
+    let resultado = document.getElementById("resultado");
+
+    resultado.innerHTML = `
+        <h2>Mapa de la escuela</h2>
+        <img src="mapa_cecyte.png" alt="Mapa">
+    `;
+}
+
+</script>
+
+</body>
+</html>
